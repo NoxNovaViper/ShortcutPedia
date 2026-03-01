@@ -5,7 +5,6 @@
 
 let currentOS = 'win';
 
-// OS data per shortcut — each shortcut has win/mac/linux keys
 const shortcuts = {
     vscode: [
         { desc: "Command Palette", detail: "Access all commands", win: ["Ctrl","Shift","P"], mac: ["⌘","Shift","P"], linux: ["Ctrl","Shift","P"] },
@@ -26,7 +25,7 @@ const shortcuts = {
         { desc: "Virtual Desktop", detail: "Create new virtual desktop", win: ["Win","Ctrl","D"], mac: ["Ctrl","↑"], linux: ["Super","D"] },
         { desc: "Switch Desktop", detail: "Move between virtual desktops", win: ["Win","Ctrl","→"], mac: ["Ctrl","→"], linux: ["Super","→"] },
         { desc: "Snap Window Left", detail: "Snap window to left half", win: ["Win","←"], mac: ["Ctrl","⌥","←"], linux: ["Super","←"] },
-        { desc: "Task Manager", detail: "Open task manager", win: ["Ctrl","Shift","Esc"], mac: ["⌘","Space","Activity"], linux: ["Ctrl","Alt","T"] },
+        { desc: "Task Manager", detail: "Open task manager", win: ["Ctrl","Shift","Esc"], mac: ["⌘","Space"], linux: ["Ctrl","Alt","T"] },
         { desc: "Lock Screen", detail: "Lock your PC", win: ["Win","L"], mac: ["⌘","Ctrl","Q"], linux: ["Super","L"] },
         { desc: "File Explorer", detail: "Open file explorer", win: ["Win","E"], mac: ["⌘","N"], linux: ["Super","E"] },
         { desc: "Screenshot", detail: "Snip & Sketch capture", win: ["Win","Shift","S"], mac: ["⌘","Shift","4"], linux: ["PrtSc"] },
@@ -70,10 +69,54 @@ const shortcuts = {
         { desc: "New Tab (Terminal)", detail: "Open new terminal tab", win: ["Ctrl","Shift","T"], mac: ["⌘","T"], linux: ["Ctrl","Shift","T"] },
         { desc: "Paste", detail: "Paste clipboard text", win: ["Ctrl","Shift","V"], mac: ["⌘","V"], linux: ["Ctrl","Shift","V"] },
         { desc: "Exit", detail: "Close terminal session", win: ["Ctrl","D"], mac: ["Ctrl","D"], linux: ["Ctrl","D"] },
-    ]
+    ],
+    git: [
+        { desc: "Initialize Repo", detail: "Create a new local git repo", win: ["git init"], mac: ["git init"], linux: ["git init"] },
+        { desc: "Clone Repo", detail: "Copy a remote repo locally", win: ["git clone <url>"], mac: ["git clone <url>"], linux: ["git clone <url>"] },
+        { desc: "Stage All Changes", detail: "Add all files to staging", win: ["git add ."], mac: ["git add ."], linux: ["git add ."] },
+        { desc: "Commit", detail: "Save staged changes with message", win: ["git commit -m"], mac: ["git commit -m"], linux: ["git commit -m"] },
+        { desc: "Push", detail: "Upload commits to remote", win: ["git push"], mac: ["git push"], linux: ["git push"] },
+        { desc: "Pull", detail: "Fetch and merge remote changes", win: ["git pull"], mac: ["git pull"], linux: ["git pull"] },
+        { desc: "Check Status", detail: "See staged and unstaged changes", win: ["git status"], mac: ["git status"], linux: ["git status"] },
+        { desc: "View Log", detail: "See commit history", win: ["git log --oneline"], mac: ["git log --oneline"], linux: ["git log --oneline"] },
+        { desc: "Create Branch", detail: "Make a new branch", win: ["git checkout -b"], mac: ["git checkout -b"], linux: ["git checkout -b"] },
+        { desc: "Switch Branch", detail: "Move to another branch", win: ["git checkout <branch>"], mac: ["git checkout <branch>"], linux: ["git checkout <branch>"] },
+        { desc: "Merge Branch", detail: "Merge a branch into current", win: ["git merge <branch>"], mac: ["git merge <branch>"], linux: ["git merge <branch>"] },
+        { desc: "Undo Last Commit", detail: "Keep changes but undo commit", win: ["git reset --soft HEAD~1"], mac: ["git reset --soft HEAD~1"], linux: ["git reset --soft HEAD~1"] },
+        { desc: "Stash Changes", detail: "Temporarily save uncommitted work", win: ["git stash"], mac: ["git stash"], linux: ["git stash"] },
+        { desc: "View Diff", detail: "See unstaged changes", win: ["git diff"], mac: ["git diff"], linux: ["git diff"] },
+    ],
+    figma: [
+        { desc: "Scale Object", detail: "Resize proportionally", win: ["K"], mac: ["K"], linux: ["K"] },
+        { desc: "Frame Tool", detail: "Create a new frame", win: ["F"], mac: ["F"], linux: ["F"] },
+        { desc: "Rectangle Tool", detail: "Draw a rectangle", win: ["R"], mac: ["R"], linux: ["R"] },
+        { desc: "Text Tool", detail: "Add a text layer", win: ["T"], mac: ["T"], linux: ["T"] },
+        { desc: "Pen Tool", detail: "Draw custom paths", win: ["P"], mac: ["P"], linux: ["P"] },
+        { desc: "Component", detail: "Create a reusable component", win: ["Ctrl","Alt","K"], mac: ["⌘","⌥","K"], linux: ["Ctrl","Alt","K"] },
+        { desc: "Group Selection", detail: "Group selected layers", win: ["Ctrl","G"], mac: ["⌘","G"], linux: ["Ctrl","G"] },
+        { desc: "Ungroup", detail: "Ungroup selected group", win: ["Ctrl","Shift","G"], mac: ["⌘","Shift","G"], linux: ["Ctrl","Shift","G"] },
+        { desc: "Zoom to Fit", detail: "Fit entire canvas in view", win: ["Shift","1"], mac: ["Shift","1"], linux: ["Shift","1"] },
+        { desc: "Toggle Rulers", detail: "Show/hide rulers", win: ["Shift","R"], mac: ["Shift","R"], linux: ["Shift","R"] },
+        { desc: "Flatten Selection", detail: "Merge layers into one", win: ["Ctrl","E"], mac: ["⌘","E"], linux: ["Ctrl","E"] },
+        { desc: "Copy Properties", detail: "Copy style to clipboard", win: ["Ctrl","Alt","C"], mac: ["⌘","⌥","C"], linux: ["Ctrl","Alt","C"] },
+        { desc: "Paste Properties", detail: "Apply copied style", win: ["Ctrl","Alt","V"], mac: ["⌘","⌥","V"], linux: ["Ctrl","Alt","V"] },
+    ],
+    notion: [
+        { desc: "New Page", detail: "Create a new page", win: ["Ctrl","N"], mac: ["⌘","N"], linux: ["Ctrl","N"] },
+        { desc: "Search", detail: "Quick find any page", win: ["Ctrl","P"], mac: ["⌘","P"], linux: ["Ctrl","P"] },
+        { desc: "Toggle Dark Mode", detail: "Switch light/dark theme", win: ["Ctrl","Shift","L"], mac: ["⌘","Shift","L"], linux: ["Ctrl","Shift","L"] },
+        { desc: "Heading 1", detail: "Turn line into H1", win: ["Ctrl","Alt","1"], mac: ["⌘","⌥","1"], linux: ["Ctrl","Alt","1"] },
+        { desc: "Heading 2", detail: "Turn line into H2", win: ["Ctrl","Alt","2"], mac: ["⌘","⌥","2"], linux: ["Ctrl","Alt","2"] },
+        { desc: "Bullet List", detail: "Start a bulleted list", win: ["Ctrl","Alt","4"], mac: ["⌘","⌥","4"], linux: ["Ctrl","Alt","4"] },
+        { desc: "Toggle Block", detail: "Create collapsible toggle", win: ["Ctrl","Alt","7"], mac: ["⌘","⌥","7"], linux: ["Ctrl","Alt","7"] },
+        { desc: "Bold", detail: "Bold selected text", win: ["Ctrl","B"], mac: ["⌘","B"], linux: ["Ctrl","B"] },
+        { desc: "Inline Code", detail: "Format as inline code", win: ["Ctrl","E"], mac: ["⌘","E"], linux: ["Ctrl","E"] },
+        { desc: "Insert Date", detail: "Mention today's date", win: ["@today"], mac: ["@today"], linux: ["@today"] },
+        { desc: "Duplicate Block", detail: "Copy current block below", win: ["Ctrl","D"], mac: ["⌘","D"], linux: ["Ctrl","D"] },
+        { desc: "Move Block Up", detail: "Move block up one position", win: ["Ctrl","Shift","↑"], mac: ["⌘","Shift","↑"], linux: ["Ctrl","Shift","↑"] },
+    ],
 };
 
-// Render shortcuts for a given category and OS
 function renderShortcuts(category, os) {
     const container = document.getElementById(`${category}-list`);
     if (!container) return;
@@ -100,12 +143,10 @@ function renderShortcuts(category, os) {
     }).join('');
 }
 
-// Render all categories
 function renderAll(os) {
     Object.keys(shortcuts).forEach(cat => renderShortcuts(cat, os));
 }
 
-// Copy shortcut text
 async function copyShortcut(text, btn) {
     try {
         await navigator.clipboard.writeText(text);
@@ -123,7 +164,6 @@ async function copyShortcut(text, btn) {
     }
 }
 
-// OS selector
 document.addEventListener('DOMContentLoaded', () => {
     renderAll('win');
 
@@ -137,7 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Search
     const searchBox = document.getElementById('search');
     if (searchBox) {
         searchBox.addEventListener('input', () => {
